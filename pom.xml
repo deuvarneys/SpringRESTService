@@ -16,6 +16,15 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <springframework.version>4.0.6.RELEASE</springframework.version>
+        <hibernate.version>3.6.0.Final</hibernate.version>
+<!-- 		<hibernate.version>4.3.6.Final</hibernate.version> -->
+		<mysql.version>5.1.31</mysql.version>
+		<joda-time.version>2.3</joda-time.version>
+		<testng.version>6.9.4</testng.version>
+		<mockito.version>1.10.19</mockito.version>
+		<h2.version>1.4.187</h2.version>
+		<dbunit.version>2.2</dbunit.version>
     </properties>
 	
 	<dependencies>
@@ -51,7 +60,35 @@
 			<artifactId>spring-context</artifactId>
 <!-- 			<version>3.2.2.RELEASE</version> -->
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+<!-- 			<version>4.2.4.RELEASE</version> -->
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+<!-- 			<version>4.2.4.RELEASE</version> -->
+		</dependency>
+		
+		 <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+<!--             <version>${springframework.version}</version> -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+<!--             <version>${springframework.version}</version> -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+<!--             <version>${springframework.version}</version> -->
+        </dependency>
+        
 		
 		<!-- mongodb java driver -->
 		<dependency>
@@ -71,6 +108,26 @@
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		
+		<!-- MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+<!-- 			<version>${mysql.version}</version> -->
+		</dependency>
+		
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javassist</groupId>
+		    <artifactId>javassist</artifactId>
+		    <version>3.12.1.GA</version>
+		</dependency> 
 
 	</dependencies>
 
