@@ -1,10 +1,13 @@
 package com.deuvarney.util;
 
 import com.deuvarney.model.mysql.SignUpRequest;
+import com.deuvarney.respTemp.ResponseTemplate;
+import com.deuvarney.respTemp.error.ErrorResponseTemplate;
+import com.deuvarney.respTemp.error.Errors;
 
 public class Validation {
 
-	public static void validateSignUpRequest(SignUpRequest signUpRequest){
+	public static ResponseTemplate validateSignUpRequest(SignUpRequest signUpRequest, ResponseTemplate responseTemplate){
 		String userName = signUpRequest.getUsername();
 		if(userName.length() < 5){
 			//TODO make error for length being too short
@@ -33,5 +36,8 @@ public class Validation {
 		if(confirmPassword != password){
 			// TODO make error for password and confirm password not matching
 		}
+		responseTemplate.addError(new ErrorResponseTemplate(Errors.CONFIRM_EMAIL_NO_MATCH, 713));
+		
+		return responseTemplate;
 	}
 }

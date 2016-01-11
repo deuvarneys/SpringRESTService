@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.deuvarney.model.mysql.AccountData;
 import com.deuvarney.model.mysql.SignUpRequest;
+import com.deuvarney.respTemp.ResponseTemplate;
 import com.deuvarney.service.AccountServiceI;
 import com.deuvarney.service.AccountService;
 import com.deuvarney.service.AccountServiceDao;
@@ -36,12 +37,12 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="/account/signup", method = RequestMethod.POST)
-	public SignUpRequest signUp(
+	public ResponseTemplate signUp(
 			@RequestBody(required=true) SignUpRequest signUpRequest
 			){
 			System.out.print(signUpRequest);
-			accountService.signUp(signUpRequest);
-			return signUpRequest;
+			return(accountService.signUp(signUpRequest));
+			//return signUpRequest;
 		//return null;
 	}
 }
