@@ -1,5 +1,7 @@
 package com.deuvarney.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +13,8 @@ public class ProfileData {
 	String firstName;
 	String lastName;
 	String description;
+	
+	List<Positions> positions;
 	
 	/*public ProfileData(ProfileData profileData) {
 		// TODO Auto-generated constructor stub
@@ -45,6 +49,12 @@ public class ProfileData {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public List<Positions> getPositions() {
+		return positions;
+	}
+	public void setPositions(List<Positions> positions) {
+		this.positions = positions;
 	}
 	
 }

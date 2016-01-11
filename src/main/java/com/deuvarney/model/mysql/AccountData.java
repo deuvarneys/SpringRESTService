@@ -1,6 +1,8 @@
 package com.deuvarney.model.mysql;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +35,11 @@ public class AccountData implements AccountDataBO {
 	private String lastName;
 	
 //	@Column(name= "regDate", nullable = false)
-	private long regDate;
+	private Timestamp createdDate;
+	
+	private Timestamp modifiedDate;
+	
+	private  String userName;
 
 	public int getId() {
 		return id;
@@ -59,12 +65,28 @@ public class AccountData implements AccountDataBO {
 		this.lastName = lastName;
 	}
 	
-	public long getRegDate() {
-		return regDate;
+	public Timestamp getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setRegDate(long regDate) {
-		this.regDate = regDate;
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Timestamp getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Timestamp modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

@@ -1,25 +1,28 @@
 package com.deuvarney.model.mysql;
 
-
+import java.sql.Timestamp;
 
 public interface AccountDataBO {
 	
 
-
-		public String getFirstName(); 
-
-		public void setFirstName(String firstName);
-		
-		public String getLastName();
-
-		public void setLastName(String lastName);
-		
-		public long getRegDate();
-
-		public void setRegDate(long regDate);
-		
-
-
+	public int getId();
+	public void setId(int Id);
+	
+	public String getFirstName(); 
+	public void setFirstName(String firstName);
+	
+	public String getLastName();
+	public void setLastName(String lastName);
+	
+	public Timestamp getCreatedDate();
+	public void setCreatedDate(Timestamp createdDate);
+	
+	public Timestamp getModifiedDate();
+	public void setModifiedDate(Timestamp modifiedDate);
+	
+	public String getUserName();
+	public void setUserName(String userName);
+	
 		
 
 //		@NotNull

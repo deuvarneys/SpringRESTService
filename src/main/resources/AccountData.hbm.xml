@@ -10,6 +10,9 @@
 		</id>
 		<property name="firstName" column="firstName" />
 		<property name="lastName" column="lastName" />
-		<property name="regDate" column="regDate" />
+<!-- 		<timestamp column="createdDate" name="createdDate" source="db" generated="always" /> -->
+		<property name="createdDate" column="createdDate" generated="insert"/>
+		<property name="modifiedDate" column="modifiedDate" generated="always"/>
+		<property name="userName" column="userName"/>
 	</class>
 </hibernate-mapping>
