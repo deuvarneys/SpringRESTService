@@ -37,6 +37,16 @@ public class Validation {
 			responseTemplate.addError(Errors.PASS_MATCH, Errors.PASS_MATCH_CODE);
 		}
 		
+		String firstName = signUpRequest.getFirstName();
+		if(firstName.length() < 1){
+			responseTemplate.addError(Errors.FIRSTNAME_EXISTS, Errors.FIRSTNAME_EXISTS_CODE);
+		}
+		
+		String lastName = signUpRequest.getLastName();
+		if(lastName.length() < 1){
+			responseTemplate.addError(Errors.LASTNAME_EXISTS, Errors.LASTNAME_EXISTS_CODE);
+		}
+		
 		return responseTemplate;
 	}
 }

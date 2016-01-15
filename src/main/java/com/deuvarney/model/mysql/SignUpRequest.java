@@ -6,6 +6,8 @@ public class SignUpRequest implements SignUpRequestBO{
 	private String confirmEmail;
 	private String password;
 	private String confirmPassword;
+	private String firstName;
+	private String lastName;
 	
 	@Override
 	public String getUsername() {
@@ -36,12 +38,10 @@ public class SignUpRequest implements SignUpRequestBO{
 	}
 	@Override
 	public String getEmail() {
-		// TODO Auto-generated method stub
 		return this.email;
 	}
 	@Override
 	public void setEmail(String email) {
-		// TODO Auto-generated method stub
 		this.email = email;
 	}
 	@Override
@@ -51,9 +51,19 @@ public class SignUpRequest implements SignUpRequestBO{
 	@Override
 	public void setConfirmEmail(String confirmEmail) {
 		this.confirmEmail = confirmEmail;
-		
 	}
-	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	@Override
 	public String toString(){
 		return String.format("Username: %s, Email: %s, ConfirmEmail: %s, Password: %s, ConfirmPassword: %s", 
