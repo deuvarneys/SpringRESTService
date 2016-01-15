@@ -4,6 +4,7 @@ import com.deuvarney.dao.AccountDao;
 import com.deuvarney.model.mysql.AccountData;
 import com.deuvarney.model.mysql.SignUpRequest;
 import com.deuvarney.respTemp.ResponseTemplate;
+import com.deuvarney.respTemp.error.Errors;
 import com.deuvarney.util.Validation;
 
 import java.util.List;
@@ -19,9 +20,7 @@ public class AccountService {
 	public AccountDao getAccountDao() {
 		return accountDao;
 	}
-	 
-	
-	 
+	 	 
 //	public void addPerson(AccountData accountData) {
 //		getAccountDao().insert(accountData);
 //	}
@@ -39,14 +38,23 @@ public class AccountService {
 		ResponseTemplate responseTemplate = new ResponseTemplate();
 		Validation.validateSignUpRequest(signUpRequest, responseTemplate);
 		
+		if(accountDao.doesUserExist(signUpRequest.getUsername())){
+			responseTemplate.addError(Errors.USERNAME_EXISTS, Errors.USERNAME_EXISTS_CODE);
+		}
+		
 		if(responseTemplate.getErrorCount() > 0){
 			return responseTemplate;
 		}
 		AccountData accountData = new AccountData();
-		accountData.setFirstName("test_deuvarney 1");
+		accountData.setFirstName("test_deuvarney1");
 		accountData.setLastName("test_sanderson1");
 		accountData.setUserName(signUpRequest.getUsername());
-		//return getAccountDao().insertUserAccount(accountData);
+		
+		
+		
+		getAccountDao().insertUserAccount(accountData, responseTemplate);
+		//return responseTemplate;
+		
 		return responseTemplate;
 	}
 	

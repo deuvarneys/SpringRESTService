@@ -10,10 +10,10 @@ public class Validation {
 	public static ResponseTemplate validateSignUpRequest(SignUpRequest signUpRequest, ResponseTemplate responseTemplate){
 		String userName = signUpRequest.getUsername();
 		if(userName.length() < 5){
-			//TODO make error for length being too short
+			responseTemplate.addError(Errors.USERNAME_TOO_SHORT, Errors.USERNAME_TOO_LONG_CODE);
 		}
 		if(userName.length() > 50){
-			// TODO make error for length being too long
+			responseTemplate.addError(Errors.USERNAME_TOO_LONG, Errors.USERNAME_TOO_LONG_CODE);
 		}
 		
 		String email = signUpRequest.getEmail();
@@ -21,22 +21,21 @@ public class Validation {
 		
 		String confirmEmail = signUpRequest.getConfirmEmail();
 		if(!email.equals(confirmEmail)){
-			//TODO make error for email not matching confirm email
+			responseTemplate.addError(Errors.CONFIRM_EMAIL_NO_MATCH, Errors.CONFIRM_EMAIL_NO_MATCH_CODE);
 		}
 		
 		String password = signUpRequest.getPassword();
 		if(password.length() < 5){
-			//TODO make error for length being too short
+			responseTemplate.addError(Errors.PASS_TOO_SHORT, Errors.PASS_TOO_SHORT_CODE);
 		}
-		if(password.length() > 50){
-			// TODO make error for length being too long
-		}
+//		if(password.length() > 50){
+//			// TODO make error for length being too long
+//		}
 		
 		String confirmPassword = signUpRequest.getConfirmPassword();
-		if(confirmPassword != password){
-			// TODO make error for password and confirm password not matching
+		if(!confirmPassword.equals(password)){
+			responseTemplate.addError(Errors.PASS_MATCH, Errors.PASS_MATCH_CODE);
 		}
-		responseTemplate.addError(new ErrorResponseTemplate(Errors.CONFIRM_EMAIL_NO_MATCH, 713));
 		
 		return responseTemplate;
 	}

@@ -28,6 +28,16 @@ public class ResponseTemplate {
 		this.errorCount++;
 	}
 	
+	public void addError(String error){
+		errors.add(new ErrorResponseTemplate(error));
+		this.errorCount++;
+	}
+	
+	public void addError(String error, int errorCode){
+		errors.add(new ErrorResponseTemplate(error, errorCode));
+		this.errorCount++;
+	}
+	
 	public Object getMessage() {
 		return message;
 	}

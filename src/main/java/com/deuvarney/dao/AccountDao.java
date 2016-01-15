@@ -10,6 +10,8 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.deuvarney.model.mysql.AccountData;
+import com.deuvarney.respTemp.ResponseTemplate;
+import com.deuvarney.respTemp.error.ErrorResponseTemplate;
 	 
 public class AccountDao extends HibernateDaoSupport{
 	 
@@ -31,25 +33,30 @@ public class AccountDao extends HibernateDaoSupport{
 		return (List<AccountData>) getHibernateTemplate().findByCriteria(criteria);
 	}
 	
-	public AccountData insertUserAccount(AccountData accountData){
+	public void insertUserAccount(AccountData accountData, ResponseTemplate responseTemplate){
 		//Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 		//session.beginTransaction();
 		//session.save(accountData);
 		
-		if(!doesUserExist(accountData)){
+		try{
 		 getHibernateTemplate().save(accountData);
-		 return accountData;
+		 responseTemplate.setMessage(accountData);
+		 //return responseTemplate;
+		}catch(Exception e){
+			responseTemplate.addError(e.getMessage());
+			//return responseTemplate;
 		}
+		
 		//session.getTransaction().commit();
 		
 		//TODO return error response object
-		return null;
+		//return null;
 		
 	}
 	
-	private boolean doesUserExist(AccountData accountData){
+	public boolean doesUserExist(String userName){
 		//TODO create throw/log error if more than one account is returned
-		return getUserAccount(accountData.getUserName()).size() == 1;
+		return getUserAccount(userName).size() == 1;
 	}
 	 
 }

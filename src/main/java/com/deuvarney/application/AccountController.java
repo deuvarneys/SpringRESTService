@@ -22,7 +22,7 @@ public class AccountController {
 	static AccountService accountService;
 	
 	//static AccountServiceDao accountServiceDao;
-	{
+	static{
 		context = new ClassPathXmlApplicationContext("mysql-config.xml");
 		accountService = (AccountService) context.getBean("accountService");
 		//accountServiceDao = new AccountServiceDao();
@@ -40,9 +40,9 @@ public class AccountController {
 	public ResponseTemplate signUp(
 			@RequestBody(required=true) SignUpRequest signUpRequest
 			){
-			System.out.print(signUpRequest);
-			return(accountService.signUp(signUpRequest));
-			//return signUpRequest;
+		System.out.print(signUpRequest);
+		return(accountService.signUp(signUpRequest));
+		//return signUpRequest;
 		//return null;
 	}
 }
