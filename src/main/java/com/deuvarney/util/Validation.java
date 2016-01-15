@@ -1,5 +1,8 @@
 package com.deuvarney.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.deuvarney.model.mysql.SignUpRequest;
 import com.deuvarney.respTemp.ResponseTemplate;
 import com.deuvarney.respTemp.error.ErrorResponseTemplate;
@@ -17,6 +20,13 @@ public class Validation {
 		}
 		
 		String email = signUpRequest.getEmail();
+		//TODO Move pattern to class scope to only initialize pattern once
+		Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
+		if(!matcher.find()){
+			responseTemplate.addError(Errors.EMAIL_FORMAT, Errors.EMAIL_FORMAT_CODE);
+		}
+		//String pattern = "/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
 		//TODO make error for email not matching regex/blob expression
 		
 		String confirmEmail = signUpRequest.getConfirmEmail();

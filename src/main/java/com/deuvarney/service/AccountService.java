@@ -46,8 +46,8 @@ public class AccountService {
 			return responseTemplate;
 		}
 		AccountData accountData = new AccountData();
-		accountData.setFirstName("test_deuvarney1");
-		accountData.setLastName("test_sanderson1");
+		accountData.setFirstName(signUpRequest.getFirstName());
+		accountData.setLastName(signUpRequest.getLastName());
 		accountData.setUserName(signUpRequest.getUsername());
 		
 		
