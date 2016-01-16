@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.deuvarney.model.mysql.AccountPassData" table="ACCOUNTPASS">
+		<id column="id" name="id">
+			<generator class="identity" />
+		</id>
+		
+		<property name="accountId" column="accountId" />
+		<property name="isCurrentPass" column="isCurrentPass"/>
+		<property name="passHash" column="passHash"/>
+		<many-to-one name="accountData" class="com.deuvarney.model.mysql.AccountData" insert="false" update="false" fetch="select">
+            <column name="accountId" not-null="true" />
+        </many-to-one>
+        
+        
+	</class>
+</hibernate-mapping>

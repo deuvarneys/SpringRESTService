@@ -6,7 +6,7 @@
 <hibernate-mapping>
 	<class name="com.deuvarney.model.mysql.AccountData" table="ACCOUNT">
 		<id column="id" name="id">
-			<generator class="increment" />
+			<generator class="identity" />
 		</id>
 		<property name="firstName" column="firstName" />
 		<property name="lastName" column="lastName" />
@@ -14,5 +14,16 @@
 		<property name="createdDate" column="createdDate" generated="insert"/>
 		<property name="modifiedDate" column="modifiedDate" generated="always"/>
 		<property name="userName" column="userName"/>
+		<property name="emailAddress" column="emailAddress"/>
+		
+		<set name="accountPassData" table="ACCOUNTPASS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id" not-null="true" />
+            </key>
+            
+            <one-to-many class="com.deuvarney.model.mysql.AccountPassData" />
+        </set>
+        
+		
 	</class>
 </hibernate-mapping>

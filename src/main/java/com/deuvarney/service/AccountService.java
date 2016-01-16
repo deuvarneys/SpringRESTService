@@ -2,6 +2,7 @@ package com.deuvarney.service;
 
 import com.deuvarney.dao.AccountDao;
 import com.deuvarney.model.mysql.AccountData;
+import com.deuvarney.model.mysql.AccountPassData;
 import com.deuvarney.model.mysql.SignUpRequest;
 import com.deuvarney.respTemp.ResponseTemplate;
 import com.deuvarney.respTemp.error.Errors;
@@ -31,15 +32,19 @@ public class AccountService {
 	
 	public AccountData getUserAccount(String userName){
 		// TODO make conditional to check length of returned list to see if user is returned
-		return getAccountDao().getUserAccount(userName).get(0);
+		return getAccountDao().getUserName(userName).get(0);
 	}
 	
 	public ResponseTemplate signUp(SignUpRequest signUpRequest){
 		ResponseTemplate responseTemplate = new ResponseTemplate();
 		Validation.validateSignUpRequest(signUpRequest, responseTemplate);
 		
-		if(accountDao.doesUserExist(signUpRequest.getUsername())){
+		if(accountDao.doesUserNameExist(signUpRequest.getUsername())){
 			responseTemplate.addError(Errors.USERNAME_EXISTS, Errors.USERNAME_EXISTS_CODE);
+		}
+		
+		if(accountDao.doesEmailAddressExist(signUpRequest.getEmail())){
+			responseTemplate.addError(Errors.EMAIL_EXISTS, Errors.EMAIL_EXISTS_CODE);
 		}
 		
 		if(responseTemplate.getErrorCount() > 0){
@@ -49,12 +54,15 @@ public class AccountService {
 		accountData.setFirstName(signUpRequest.getFirstName());
 		accountData.setLastName(signUpRequest.getLastName());
 		accountData.setUserName(signUpRequest.getUsername());
+		accountData.setEmailAddress(signUpRequest.getEmail());
+		
+		AccountPassData accountPassData = new AccountPassData();
+		accountPassData.setPassHash(signUpRequest.getPassword());
+		accountPassData.setIsCurrentPass(true);
 		
 		
 		
-		getAccountDao().insertUserAccount(accountData, responseTemplate);
-		//return responseTemplate;
-		
+		getAccountDao().insertUserAccount(accountData, accountPassData, responseTemplate);
 		return responseTemplate;
 	}
 	

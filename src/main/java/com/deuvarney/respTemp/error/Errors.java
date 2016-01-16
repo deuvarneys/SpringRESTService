@@ -23,6 +23,7 @@ public class Errors {
 	
 	//Database Errors
 	public final static String USERNAME_EXISTS = "Provied username already exists";
+	public final static String EMAIL_EXISTS = "Provied email address already exists";
 	
 	//Name Errors
 	public final static String FIRSTNAME_EXISTS = "First Name is required";
@@ -33,7 +34,7 @@ public class Errors {
 	public final static int USERNAME_TOO_LONG_CODE = 202;
 	
 	public final static int USERNAME_EXISTS_CODE = 101;
-	
+	public final static int EMAIL_EXISTS_CODE = 102;
 	public final static int PASS_TOO_SHORT_CODE = 203;
 	//public final static int PASS_TOO_LONG_CODE = 203;
 	public final static int PASS_MATCH_CODE = 204;

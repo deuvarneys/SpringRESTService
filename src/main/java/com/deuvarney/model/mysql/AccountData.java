@@ -3,6 +3,10 @@ package com.deuvarney.model.mysql;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,6 +44,10 @@ public class AccountData implements AccountDataBO {
 	private Timestamp modifiedDate;
 	
 	private  String userName;
+	
+	private String emailAddress;
+	
+	private Set<AccountPassData> accountPassData = new HashSet<AccountPassData>(0);
 
 	public int getId() {
 		return id;
@@ -87,6 +95,36 @@ public class AccountData implements AccountDataBO {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	
+//	public List<AccountPassData> getAccountPassData() {
+//		return accountPassData;
+//	}
+//
+//	public void setAccountPassData(List<AccountPassData> accountPassData) {
+//		this.accountPassData = accountPassData;
+//	}
+
+	public Set<AccountPassData> getAccountPassData() {
+		return accountPassData;
+	}
+
+	public void setAccountPassData(Set<AccountPassData> accountPassData) {
+		this.accountPassData = accountPassData;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Id: %s, FirstName: %s, LastName: %s, CreatedDate: %s, ModifiedDate: %s, UserName: %s, EmailAddress: %s",
+				this.id, this.firstName, this.lastName, this.createdDate, this.modifiedDate, this.userName, this.emailAddress);
 	}
 
 }

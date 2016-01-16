@@ -10,8 +10,11 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.deuvarney.model.mysql.AccountData;
+import com.deuvarney.model.mysql.AccountPassData;
 import com.deuvarney.respTemp.ResponseTemplate;
 import com.deuvarney.respTemp.error.ErrorResponseTemplate;
+
+//import scala.annotation.meta.setter;
 	 
 public class AccountDao extends HibernateDaoSupport{
 	 
@@ -27,19 +30,37 @@ public class AccountDao extends HibernateDaoSupport{
 		return  (List<AccountData>) getHibernateTemplate().findByCriteria(criteria);
 	}
 	
-	public List<AccountData> getUserAccount(String userName){
+	public List<AccountData> getUserName(String userName){
 		DetachedCriteria criteria = DetachedCriteria.forClass(AccountData.class);
 		criteria.add(Restrictions.eq("userName", userName));
 		return (List<AccountData>) getHibernateTemplate().findByCriteria(criteria);
 	}
 	
-	public void insertUserAccount(AccountData accountData, ResponseTemplate responseTemplate){
+	public List<AccountData> getEmailAddress(String emailAddress){
+		DetachedCriteria criteria = DetachedCriteria.forClass(AccountData.class);
+		criteria.add(Restrictions.eq("emailAddress", emailAddress));
+		return (List<AccountData>) getHibernateTemplate().findByCriteria(criteria);
+	}
+	
+	public void insertUserAccount(AccountData accountData, AccountPassData accountPassData, ResponseTemplate responseTemplate){
 		//Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 		//session.beginTransaction();
 		//session.save(accountData);
 		
 		try{
-		 getHibernateTemplate().save(accountData);
+		 hibernateTemplate = getHibernateTemplate();
+		 hibernateTemplate.save(accountData);
+		 System.out.println("AccountData: " + accountData.toString());
+		 //accountPassData.setAccountId(accountData.getId());
+		 accountPassData.setAccountData(accountData);
+		 accountData.getAccountPassData().add(accountPassData);
+		 accountPassData.setAccountId(accountData.getId());
+		 //accountPassData.setId(accountData.getId());
+		 System.out.println("AccountPassData: " + accountPassData.toString());
+		 hibernateTemplate.save(accountPassData);
+		 
+		 
+		 accountData.setAccountPassData(null);
 		 responseTemplate.setMessage(accountData);
 		 //return responseTemplate;
 		}catch(Exception e){
@@ -54,9 +75,14 @@ public class AccountDao extends HibernateDaoSupport{
 		
 	}
 	
-	public boolean doesUserExist(String userName){
+	public boolean doesEmailAddressExist(String emailAddress){
+		//TODO create throw/log error if more than one email is returned
+		return getEmailAddress(emailAddress).size() == 1;
+	}
+	
+	public boolean doesUserNameExist(String userName){
 		//TODO create throw/log error if more than one account is returned
-		return getUserAccount(userName).size() == 1;
+		return getUserName(userName).size() == 1;
 	}
 	 
 }
