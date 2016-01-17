@@ -4,6 +4,7 @@ package com.deuvarney.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -43,11 +44,14 @@ public class AccountDao extends HibernateDaoSupport{
 	}
 	
 	public void insertUserAccount(AccountData accountData, AccountPassData accountPassData, ResponseTemplate responseTemplate){
-		//Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Session session = null;
+		Transaction tx = null;
 		//session.beginTransaction();
 		//session.save(accountData);
 		
 		try{
+		 session = getHibernateTemplate().getSessionFactory().openSession();
+		 tx = session.beginTransaction();
 		 hibernateTemplate = getHibernateTemplate();
 		 hibernateTemplate.save(accountData);
 		 System.out.println("AccountData: " + accountData.toString());
@@ -59,13 +63,22 @@ public class AccountDao extends HibernateDaoSupport{
 		 System.out.println("AccountPassData: " + accountPassData.toString());
 		 hibernateTemplate.save(accountPassData);
 		 
-		 
+		 //Hide password data sent back to client (Also eliminates error that gets generated when passing list of ps elements)
 		 accountData.setAccountPassData(null);
 		 responseTemplate.setMessage(accountData);
+		 tx.commit();
 		 //return responseTemplate;
 		}catch(Exception e){
 			responseTemplate.addError(e.getMessage());
+			e.printStackTrace();
+			tx.rollback();
+			
 			//return responseTemplate;
+		}finally{
+			if(session != null){
+				session.close();
+			}
+			
 		}
 		
 		//session.getTransaction().commit();

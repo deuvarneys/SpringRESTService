@@ -26,10 +26,11 @@ public class ProfileService {
 		mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 	}
 	
-	public ProfileData getProfile(String lastName){
+	public ProfileData getProfile(String userName){
 		// query to search user
-		Query searchUserQuery = new Query(Criteria.where("lastName").is(lastName));
+		Query searchUserQuery = new Query(Criteria.where("userName").is(userName));
 		profileData = mongoOperation.findOne(searchUserQuery, ProfileData.class);
+		//System.out.println(profileData.toString());
 		return profileData;
 	}
 	

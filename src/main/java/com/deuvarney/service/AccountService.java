@@ -1,6 +1,7 @@
 package com.deuvarney.service;
 
 import com.deuvarney.dao.AccountDao;
+import com.deuvarney.model.ProfileData;
 import com.deuvarney.model.mysql.AccountData;
 import com.deuvarney.model.mysql.AccountPassData;
 import com.deuvarney.model.mysql.SignUpRequest;
@@ -50,6 +51,7 @@ public class AccountService {
 		if(responseTemplate.getErrorCount() > 0){
 			return responseTemplate;
 		}
+		
 		AccountData accountData = new AccountData();
 		accountData.setFirstName(signUpRequest.getFirstName());
 		accountData.setLastName(signUpRequest.getLastName());
@@ -63,6 +65,12 @@ public class AccountService {
 		
 		
 		getAccountDao().insertUserAccount(accountData, accountPassData, responseTemplate);
+		
+		if(responseTemplate.getErrorCount() == 0){
+			
+			new ProfileService().postProfile(new ProfileData(accountData.getId(), accountData.getUserName(), accountData.getFirstName(), accountData.getLastName()));
+		}
+		
 		return responseTemplate;
 	}
 	

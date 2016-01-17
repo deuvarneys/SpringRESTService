@@ -20,10 +20,10 @@ public class ProfileController {
 		profileService = new ProfileService();
 	}
 	
-	@RequestMapping(value="/profile/{lastName}", method=RequestMethod.GET)
-	public ProfileData getProfile(@PathVariable String lastName){
-		System.out.println("LASTNAME IS: " + lastName);
-		return profileService.getProfile(lastName);
+	@RequestMapping(value="/profile/{userName}", method=RequestMethod.GET)
+	public ProfileData getProfile(@PathVariable String userName){
+		System.out.println("UserName IS: " + userName);
+		return profileService.getProfile(userName);
 	}
 	
 	@RequestMapping(value="/profiled", method=RequestMethod.GET)
