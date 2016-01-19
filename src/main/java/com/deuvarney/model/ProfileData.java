@@ -1,5 +1,6 @@
 package com.deuvarney.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -16,7 +17,8 @@ public class ProfileData {
 	private String lastName;
 	private String description;
 	
-	List<Positions> positions;
+	private List<String> positionIds;// = new ArrayList<String>();
+	private List<Position> positions;
 	
 	/*public ProfileData(ProfileData profileData) {
 		// TODO Auto-generated constructor stub
@@ -28,6 +30,11 @@ public class ProfileData {
 		this.description = description;
 	}
 	*/
+	
+	public ProfileData(){
+		
+	}
+	
 	public ProfileData(int accountId, String userName, String firstName, String lastName){
 		this.accountId = accountId;
 		this.userName = userName;
@@ -75,17 +82,26 @@ public class ProfileData {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public List<Positions> getPositions() {
+	public List<String> getPositionsIds() {
+		return positionIds;
+	}
+	public void setPositionsIds(List<String> positionIds) {
+		this.positionIds = positionIds;
+	}
+	public void addPositionId(String positionId){
+		this.positionIds.add(positionId);
+	}
+	public List<Position> getPositions() {
 		return positions;
 	}
-	public void setPositions(List<Positions> positions) {
+	public void setPositions(List<Position> positions) {
 		this.positions = positions;
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("Id: %s, FirstName: %s, LastName: %s, Description: %s, Positions: %s",
-				id, firstName, lastName, description, positions.toString());
+				id, firstName, lastName, description, positionIds.toString());
 	}
 	
 }
