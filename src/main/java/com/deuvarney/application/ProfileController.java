@@ -161,4 +161,27 @@ public class ProfileController {
 		return profileService.removePosition(userName, positionId);
 	}
 	
+	@RequestMapping(value="/profile/{userName}/position", method=RequestMethod.PUT)
+	public Position updatePosition(HttpServletResponse response,
+			@PathVariable("userName") String userName,
+				@RequestBody(required=true) Position position						
+			){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		//res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+		System.out.println(position); 
+		//return position;
+		return profileService.updatePosition(userName, position);
+		//return null;
+	}
+	
+	@RequestMapping(value="/profile/{userName}/position", method=RequestMethod.GET)
+	public Position getPosition(HttpServletResponse response,
+			@PathVariable("userName") String userName,
+				@RequestParam(required=true, name="positionId") String positionId						
+			){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		//res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+		return profileService.getPosition(userName, positionId);
+	}
+	
 }

@@ -81,7 +81,6 @@ public class ProfileService {
 		mongoOperation.remove(mongoOperation.findById(positionId, Position.class));
 		
 		Query searchUserQuery = new Query(Criteria.where("userName").is(userName));
-		//Query searchPositionQuery = new Query(Criter)
 		profileData = mongoOperation.findOne(searchUserQuery, ProfileData.class);
 		List<String> positionIds = profileData.getPositionsIds();
 		//int positionIndex = positionIds.indexOf(positionId);
@@ -91,6 +90,20 @@ public class ProfileService {
 		mongoOperation.save(profileData);
 		
 		return profileData;
+	}
+
+	public Position updatePosition(String userName, Position position) {
+		mongoOperation.save(position);
+		return position;
+	}
+
+	public Position getPosition(String userName, String positionId) {
+		Query searchUserQuery = new Query(Criteria.where("userName").is(userName));
+		ProfileData profileData = mongoOperation.findOne(searchUserQuery, ProfileData.class);
+		if(profileData.getPositionsIds().indexOf(positionId) != -1){
+			return mongoOperation.findById(positionId, Position.class);
+		}
+		return null;
 	}
 
 }
