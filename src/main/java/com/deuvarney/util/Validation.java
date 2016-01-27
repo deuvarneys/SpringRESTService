@@ -10,10 +10,11 @@ import com.deuvarney.respTemp.error.Errors;
 
 public class Validation {
 
+	public Validation(){}
 	public static ResponseTemplate validateSignUpRequest(SignUpRequest signUpRequest, ResponseTemplate responseTemplate){
 		String userName = signUpRequest.getUsername();
 		if(userName.length() < 5){
-			responseTemplate.addError(Errors.USERNAME_TOO_SHORT, Errors.USERNAME_TOO_LONG_CODE);
+			responseTemplate.addError(Errors.USERNAME_TOO_SHORT, Errors.USERNAME_TOO_SHORT_CODE);
 		}
 		if(userName.length() > 50){
 			responseTemplate.addError(Errors.USERNAME_TOO_LONG, Errors.USERNAME_TOO_LONG_CODE);
@@ -26,8 +27,6 @@ public class Validation {
 		if(!matcher.find()){
 			responseTemplate.addError(Errors.EMAIL_FORMAT, Errors.EMAIL_FORMAT_CODE);
 		}
-		//String pattern = "/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
-		//TODO make error for email not matching regex/blob expression
 		
 		String confirmEmail = signUpRequest.getConfirmEmail();
 		if(!email.equals(confirmEmail)){
