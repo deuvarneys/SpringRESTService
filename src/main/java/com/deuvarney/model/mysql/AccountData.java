@@ -43,7 +43,7 @@ public class AccountData implements AccountDataBO {
 	
 	private Timestamp modifiedDate;
 	
-	private  String userName;
+	private String userName;
 	
 	private String emailAddress;
 	

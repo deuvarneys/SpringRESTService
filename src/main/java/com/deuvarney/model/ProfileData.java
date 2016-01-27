@@ -17,7 +17,7 @@ public class ProfileData {
 	private String lastName;
 	private String description;
 	
-	private List<String> positionIds;// = new ArrayList<String>();
+	private List<String> positionIds = new ArrayList<String>();
 	private List<Position> positions;
 	
 	/*public ProfileData(ProfileData profileData) {
