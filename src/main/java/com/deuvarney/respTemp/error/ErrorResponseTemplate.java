@@ -3,7 +3,9 @@ package com.deuvarney.respTemp.error;
 public class ErrorResponseTemplate {
 	private String error;
 	private int errorCode = 0;
-
+	
+	public ErrorResponseTemplate(){}
+	
 	public ErrorResponseTemplate(String error){
 		this.error = error;
 	}

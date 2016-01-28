@@ -10,6 +10,8 @@ public class ResponseTemplate {
 	private List<ErrorResponseTemplate> errors = new ArrayList<>();
 	private Object message;
 	
+	public ResponseTemplate(){}
+	
 	public int getErrorCount() {
 		return errorCount;
 	}

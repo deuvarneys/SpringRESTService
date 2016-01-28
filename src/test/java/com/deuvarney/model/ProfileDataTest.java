@@ -96,12 +96,16 @@ public class ProfileDataTest {
 		assertEquals("Default add positions length value is 2",  2, profileData.getPositionsIds().size());
 	}
 	
-//	@Test
-//	public void testToString(){
-//		profileData.setId("1234");
-//		profileData.setAccountId(1234);
-//		assertNotNull("Returned string from toString() method isn't null", profileData.toString());
-//	}
+	@Test
+	public void testToString(){
+		profileData.setId("1234");
+		profileData.setAccountId(1234);
+		profileData.setUserName("TestUsername");
+		profileData.setFirstName("TestFirstName");
+		profileData.setLastName("TestLastName");
+		profileData.setPositions(new ArrayList<Position>());
+		assertNotNull("Returned string from toString() method isn't null", profileData.toString());
+	}
 	
 	@Test
 	public void testProfileDataConstructor(){

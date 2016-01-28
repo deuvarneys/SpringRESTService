@@ -66,8 +66,8 @@ public class SignUpRequest implements SignUpRequestBO{
 	}
 	@Override
 	public String toString(){
-		return String.format("Username: %s, Email: %s, ConfirmEmail: %s, Password: %s, ConfirmPassword: %s", 
-				username, email, confirmEmail, password, confirmPassword);
+		return String.format("Username: %s, Email: %s, ConfirmEmail: %s, Password: %s, ConfirmPassword: %s, FirstName: %s, LastName: %s", 
+				username, email, confirmEmail, password, confirmPassword, firstName, lastName);
 	}
 	
 
