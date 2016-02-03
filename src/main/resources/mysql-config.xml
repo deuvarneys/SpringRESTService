@@ -30,6 +30,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="mappingResources">
 			<list>
 				<value>AccountData.hbm.xml</value>
+				<value>AccountPassData.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

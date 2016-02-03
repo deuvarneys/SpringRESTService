@@ -1,0 +1,24 @@
+spring:
+ container_name: spring
+ build: .
+ ports:
+   - "8080:8080"
+ net: "host"
+mysql:
+  container_name: mysql
+  build: ./mysql/
+  ports: 
+    - "3306:3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=secret
+mongotest:
+  container_name: mongotest
+  image: mongo:3.2.1
+  ports:
+    - "27017:27017"
+mongorestore:
+  container_name: mongorestore
+  build: ./mongoRestore/
+  links:
+    - mongotest:mongotest
+  command: /tmp/entrypoint.sh

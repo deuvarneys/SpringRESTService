@@ -1,6 +1,12 @@
 package com.deuvarney.model.mysql;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +39,15 @@ public class AccountData implements AccountDataBO {
 	private String lastName;
 	
 //	@Column(name= "regDate", nullable = false)
-	private long regDate;
+	private Timestamp createdDate;
+	
+	private Timestamp modifiedDate;
+	
+	private String userName;
+	
+	private String emailAddress;
+	
+	private Set<AccountPassData> accountPassData;
 
 	public int getId() {
 		return id;
@@ -59,12 +73,58 @@ public class AccountData implements AccountDataBO {
 		this.lastName = lastName;
 	}
 	
-	public long getRegDate() {
-		return regDate;
+	public Timestamp getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setRegDate(long regDate) {
-		this.regDate = regDate;
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Timestamp getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Timestamp modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	
+//	public List<AccountPassData> getAccountPassData() {
+//		return accountPassData;
+//	}
+//
+//	public void setAccountPassData(List<AccountPassData> accountPassData) {
+//		this.accountPassData = accountPassData;
+//	}
+
+	public Set<AccountPassData> getAccountPassData() {
+		return accountPassData;
+	}
+
+	public void setAccountPassData(Set<AccountPassData> accountPassData) {
+		this.accountPassData = accountPassData;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Id: %s, FirstName: %s, LastName: %s, CreatedDate: %s, ModifiedDate: %s, UserName: %s, EmailAddress: %s",
+				this.id, this.firstName, this.lastName, this.createdDate, this.modifiedDate, this.userName, this.emailAddress);
 	}
 
 }
