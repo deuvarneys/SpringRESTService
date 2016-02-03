@@ -1,9 +1,3 @@
-spring:
- container_name: spring
- build: .
- ports:
-   - "8080:8080"
- net: "host"
 mysql:
   container_name: mysql
   build: ./mysql/

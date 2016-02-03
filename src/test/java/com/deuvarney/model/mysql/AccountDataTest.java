@@ -84,7 +84,7 @@ public class AccountDataTest {
 		AccountPassData accountPassData = new AccountPassData();
 		Set<AccountPassData> arrayAccountPassData = new HashSet<AccountPassData>();
 		arrayAccountPassData.add(accountPassData);
-		assertEquals("Default accountPassData size should be 0", 0 , accountData.getAccountPassData().size());
+		assertNull("Default accountPassData size should be null", accountData.getAccountPassData());
 		accountData.setAccountPassData(arrayAccountPassData);
 		assertEquals("Default accountPassData size should be 1", 1 , accountData.getAccountPassData().size());
 	}

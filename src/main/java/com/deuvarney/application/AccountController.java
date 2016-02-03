@@ -32,7 +32,9 @@ public class AccountController {
 	public AccountData getAccount(@PathVariable String userName){
 		//return accountServiceDao.getAccountData(lastName);
 		//return accountService.fetchAllPersons().get(0);
-		return accountService.getUserAccount(userName);
+		AccountData accountData = accountService.getUserAccount(userName);
+		accountData.setAccountPassData(null);
+		return accountData;
 		
 	}
 	
