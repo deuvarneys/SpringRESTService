@@ -2,6 +2,7 @@
 Back-end Rest Service for various front-end applications
 
 This project is can be ran using either Docker or Docker-Compose
+To install: https://docs.docker.com/compose/install/
 
 To start this project, run:
 $ docker-compose build && docker-compose up
