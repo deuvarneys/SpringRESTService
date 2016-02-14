@@ -1,5 +1,7 @@
 package com.deuvarney.application;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import com.deuvarney.model.mysql.AccountData;
 import com.deuvarney.model.mysql.SignUpRequest;
 import com.deuvarney.respTemp.ResponseTemplate;
 import com.deuvarney.service.AccountServiceI;
+
 import com.deuvarney.service.AccountService;
 import com.deuvarney.service.AccountServiceDao;
 
@@ -47,4 +50,21 @@ public class AccountController {
 		//return signUpRequest;
 		//return null;
 	}
+	
+	@RequestMapping(value="/account/{userName}/exists", method= RequestMethod.GET)
+	public String accountExists(HttpServletResponse response,
+			@PathVariable String userName){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		return String.valueOf(accountService.accountExists(userName));
+	}
+
+//	@RequestMapping(value="/account/{userName}/exists", method=RequestMethod.OPTIONS)
+//	public void accountExistsOptions(HttpServletResponse response,
+//			@PathVariable("userName") String userName
+//				//@RequestBody(required=true) Position position						
+//			){
+//		response.setHeader("Access-Control-Allow-Origin", "*");
+//		//res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+//		//return profileService.addPosition(userName, position);
+//	}
 }

@@ -73,6 +73,14 @@ public class AccountService {
 		
 		return responseTemplate;
 	}
+
+	public boolean accountExists(String userName) {
+		// TODO Auto-generated method stub
+		if(userName.indexOf("@") == -1){		
+			return accountDao.doesUserNameExist(userName);
+		}
+		return accountDao.doesEmailAddressExist(userName);
+	}
 	
 }
 
