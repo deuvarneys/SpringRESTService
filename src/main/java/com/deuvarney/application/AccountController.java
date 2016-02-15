@@ -40,11 +40,20 @@ public class AccountController {
 		return accountData;
 		
 	}
+	@RequestMapping(value="/account/signup", method = RequestMethod.OPTIONS)
+	public void signUpOptions(
+			HttpServletResponse response,
+			@RequestBody(required=true) SignUpRequest signUpRequest
+			){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+	}
 	
 	@RequestMapping(value="/account/signup", method = RequestMethod.POST)
 	public ResponseTemplate signUp(
+			HttpServletResponse response,
 			@RequestBody(required=true) SignUpRequest signUpRequest
 			){
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		System.out.print(signUpRequest);
 		return(accountService.signUp(signUpRequest));
 		//return signUpRequest;

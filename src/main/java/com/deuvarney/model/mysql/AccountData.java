@@ -47,7 +47,7 @@ public class AccountData implements AccountDataBO {
 	
 	private String emailAddress;
 	
-	private Set<AccountPassData> accountPassData;
+	private Set<AccountPassData> accountPassData = new HashSet<AccountPassData>();
 
 	public int getId() {
 		return id;
